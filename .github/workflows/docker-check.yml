@@ -1,0 +1,18 @@
+name: Docker Build Check
+
+on:
+  push:
+    branches: [ "main", "master", "feature/*" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: docker build . --file Dockerfile --tag moj-testowy-obraz
